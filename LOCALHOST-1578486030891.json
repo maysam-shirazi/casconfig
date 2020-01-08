@@ -1,8 +1,8 @@
 {
   @class: org.apereo.cas.services.RegexRegisteredService
   serviceId: https://localhost:8443/(.*)
-  name: LOCAL
-  id: 1578474551707
+  name: LOCALHOST
+  id: 1578486030891
   expirationPolicy:
   {
     @class: org.apereo.cas.services.DefaultRegisteredServiceExpirationPolicy
@@ -13,7 +13,7 @@
   {
     @class: org.apereo.cas.services.RefuseRegisteredServiceProxyPolicy
   }
-  evaluationOrder: 0
+  evaluationOrder: 1
   usernameAttributeProvider:
   {
     @class: org.apereo.cas.services.DefaultRegisteredServiceUsernameProvider
@@ -23,21 +23,35 @@
   logoutType: BACK_CHANNEL
   attributeReleasePolicy:
   {
-    @class: org.apereo.cas.services.DenyAllAttributeReleasePolicy
+    @class: org.apereo.cas.services.ReturnAllowedAttributeReleasePolicy
     principalAttributesRepository:
     {
       @class: org.apereo.cas.authentication.principal.DefaultPrincipalAttributesRepository
-      expiration: 0
+      mergingStrategy: MULTIVALUED
+      ignoreResolvedAttributes: false
     }
     consentPolicy:
     {
       @class: org.apereo.cas.services.consent.DefaultRegisteredServiceConsentPolicy
       enabled: true
+      order: 0
     }
     authorizedToReleaseCredentialPassword: false
     authorizedToReleaseProxyGrantingTicket: false
-    excludeDefaultAttributes: true
-    authorizedToReleaseAuthenticationAttributes: false
+    excludeDefaultAttributes: false
+    authorizedToReleaseAuthenticationAttributes: true
+    order: 0
+  }
+  multifactorPolicy:
+  {
+    @class: org.apereo.cas.services.DefaultRegisteredServiceMultifactorPolicy
+    multifactorAuthenticationProviders:
+    [
+      java.util.LinkedHashSet
+      []
+    ]
+    failureMode: UNDEFINED
+    bypassEnabled: false
   }
   accessStrategy:
   {
@@ -48,8 +62,20 @@
     delegatedAuthenticationPolicy:
     {
       @class: org.apereo.cas.services.DefaultRegisteredServiceDelegatedAuthenticationPolicy
+      allowedProviders:
+      [
+        java.util.LinkedHashSet
+        []
+      ]
+      permitUndefined: true
+      exclusive: false
     }
     requireAllAttributes: true
     caseInsensitive: false
   }
+  contacts:
+  [
+    java.util.ArrayList
+    []
+  ]
 }
