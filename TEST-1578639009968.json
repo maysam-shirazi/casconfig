@@ -13,7 +13,7 @@
   {
     @class: org.apereo.cas.services.RefuseRegisteredServiceProxyPolicy
   }
-  evaluationOrder: 1
+  evaluationOrder: 0
   usernameAttributeProvider:
   {
     @class: org.apereo.cas.services.DefaultRegisteredServiceUsernameProvider
@@ -21,6 +21,16 @@
     encryptUsername: false
   }
   logoutType: BACK_CHANNEL
+  requiredHandlers:
+  [
+    java.util.HashSet
+    []
+  ]
+  environments:
+  [
+    java.util.HashSet
+    []
+  ]
   attributeReleasePolicy:
   {
     @class: org.apereo.cas.services.ReturnAllowedAttributeReleasePolicy
@@ -41,6 +51,11 @@
     excludeDefaultAttributes: false
     authorizedToReleaseAuthenticationAttributes: true
     order: 0
+    allowedAttributes:
+    [
+      java.util.ArrayList
+      []
+    ]
   }
   multifactorPolicy:
   {
@@ -71,7 +86,19 @@
       exclusive: false
     }
     requireAllAttributes: true
+    requiredAttributes:
+    {
+      @class: java.util.HashMap
+    }
+    rejectedAttributes:
+    {
+      @class: java.util.HashMap
+    }
     caseInsensitive: false
+  }
+  properties:
+  {
+    @class: java.util.HashMap
   }
   contacts:
   [
