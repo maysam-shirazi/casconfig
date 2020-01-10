@@ -1,0 +1,81 @@
+{
+  @class: org.apereo.cas.services.RegexRegisteredService
+  serviceId: https://localhost:8443/cas-management/form/edit/-1
+  name: TEST1
+  id: 1578640404561
+  expirationPolicy:
+  {
+    @class: org.apereo.cas.services.DefaultRegisteredServiceExpirationPolicy
+    deleteWhenExpired: false
+    notifyWhenDeleted: false
+  }
+  proxyPolicy:
+  {
+    @class: org.apereo.cas.services.RefuseRegisteredServiceProxyPolicy
+  }
+  evaluationOrder: 0
+  usernameAttributeProvider:
+  {
+    @class: org.apereo.cas.services.DefaultRegisteredServiceUsernameProvider
+    canonicalizationMode: NONE
+    encryptUsername: false
+  }
+  logoutType: BACK_CHANNEL
+  attributeReleasePolicy:
+  {
+    @class: org.apereo.cas.services.ReturnAllowedAttributeReleasePolicy
+    principalAttributesRepository:
+    {
+      @class: org.apereo.cas.authentication.principal.DefaultPrincipalAttributesRepository
+      mergingStrategy: MULTIVALUED
+      ignoreResolvedAttributes: false
+    }
+    consentPolicy:
+    {
+      @class: org.apereo.cas.services.consent.DefaultRegisteredServiceConsentPolicy
+      enabled: true
+      order: 0
+    }
+    authorizedToReleaseCredentialPassword: false
+    authorizedToReleaseProxyGrantingTicket: false
+    excludeDefaultAttributes: false
+    authorizedToReleaseAuthenticationAttributes: true
+    order: 0
+  }
+  multifactorPolicy:
+  {
+    @class: org.apereo.cas.services.DefaultRegisteredServiceMultifactorPolicy
+    multifactorAuthenticationProviders:
+    [
+      java.util.LinkedHashSet
+      []
+    ]
+    failureMode: UNDEFINED
+    bypassEnabled: false
+  }
+  accessStrategy:
+  {
+    @class: org.apereo.cas.services.DefaultRegisteredServiceAccessStrategy
+    order: 0
+    enabled: true
+    ssoEnabled: true
+    delegatedAuthenticationPolicy:
+    {
+      @class: org.apereo.cas.services.DefaultRegisteredServiceDelegatedAuthenticationPolicy
+      allowedProviders:
+      [
+        java.util.LinkedHashSet
+        []
+      ]
+      permitUndefined: true
+      exclusive: false
+    }
+    requireAllAttributes: true
+    caseInsensitive: false
+  }
+  contacts:
+  [
+    java.util.ArrayList
+    []
+  ]
+}
